@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Amazeriffic!</title>
+    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>    
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <h1>Amazeriffic!</h1>
+        <nav>
+          <a href="#">Sign Up!</a> |
+          <a href="#">FAQ</a> |
+          <a href="#">Support</a>
+        </nav>
+      </div>
+    </header>
+
+
+    <main>
+      <div class="container">
+        <div class="tabs">
+          <a href="" data-bind="click: changetab.bind($data,'New')"><span data-bind="attr: {class : activeClass.New }">Newest</span></a>
+          <a href="" data-bind="click: changetab.bind($data,'Old')"><span data-bind="attr: {class : activeClass.Old }">Oldest</span></a>
+          <a href="" data-bind="click: changetab.bind($data,'Tags')"><span data-bind="attr: {class : activeClass.Tags }">Tags</span></a>
+          <a href="" data-bind="click: changetab.bind($data,'Add')"><span data-bind="attr: {class : activeClass.Add }">Add</span></a>
+          <div class="newTodo" style="display:none; "> 1 New todo </div>
+        </div>
+        <div class="content">
+          <div id="new" class="todoContent" data-bind="visible: (active() =='New')">
+            <ul data-bind="foreach: todos().slice(0).reverse()">
+              <li data-bind="text: description"></li>
+            </ul>
+          </div>
+          <div id="old" class="todoContent" data-bind="visible: (active() =='Old')">
+            <ul data-bind="foreach: todos">
+              <li data-bind="text: description"></li>
+            </ul>
+          </div>
+          <div id="tags" class="todoContent" data-bind="visible: (active() =='Tags')">
+            <div data-bind="foreach: todoTags">
+              <h3 data-bind="text: name"></h3>
+              <ul data-bind="foreach: { data: toDos, as: 'todo'}">
+                <li data-bind="text: todo"></li>
+              </ul>
+            </div>
+          </div>
+          <div id="add" class="todoContent" data-bind="visible: (active() =='Add')">
+            <p>Description</p>
+            <input class="description" data-bind="value: inputDescription"/>
+            <p>tags</p>
+            <input class="tags" data-bind="value: inputTags"/>
+            <span data-bind="click: addTodo">+</span>
+          </div>
+          
+          <!--<ul>
+            <li>Get Groceries</li>
+            <li>Make up some new ToDos</li>
+            <li>Prep for Monday's class</li>
+            <li>Answer recruiter emails on LinkedIn</li>
+            <li>Take Gracie to the park</li>
+            <li>Finish writing book</li>
+          </ul>-->
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="contact">
+          <h5>Contact Us</h5>
+          <p>Amazeriffic!</p>
+          <p>555 Fiftieth Street</p>
+          <p>Asheville, NC 28801</p>
+        </div>
+        <div class="sitemap">
+          <h5>Sitemap</h5>
+          <ul>
+            <div class="left">
+              <li><a href="#">Home</a></li>
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Privacy</a></li>
+            </div>
+            <div class="right">
+              <li><a href="#">Support</a></li>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">Careers</a></li>
+            </div>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+    <script src="javascripts/knockout-3.4.0.js"></script>
+    <script src="javascripts/app.js"></script>
+  </body>
+</html>
